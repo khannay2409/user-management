@@ -62,72 +62,79 @@ GET https://stapubox.com/sportslist/
 
 ### 1️⃣ Insert Roles into Database
 
--sql
+- sql
+
 INSERT INTO roles (name) VALUES ('ROLE_USER');
 INSERT INTO roles (name) VALUES ('ROLE_ADMIN');
 
-2️⃣ Register a User via API
+### 2️⃣ Register a User via API
 POST /api/auth/register
 
 
 By default, the user gets ROLE_USER.
 
-3️⃣ Promote User to Admin (DB Query)
+### 3️⃣ Promote User to Admin (DB Query)
 
 Example: make user with user_id = 1 an admin.
 
 INSERT INTO user_roles (user_id, role_id)
 SELECT 1, id FROM roles WHERE name = 'ROLE_ADMIN';
 
-4️⃣ Login Again
+### 4️⃣ Login Again
 
 Login again to receive an updated JWT token with admin privileges.
 
---
+---
 
-🌐 API Endpoints
-Authentication
+## 🌐 API Endpoints
 
-POST /api/auth/register – Register user
+### Authentication
 
-POST /api/auth/login – Login and receive JWT
+- POST /api/auth/register – Register user
 
-Venue Management (Admin)
+- POST /api/auth/login – Login and receive JWT
 
-POST /venues – Add venue
+### Venue Management (Admin)
 
-GET /venues – List venues
+- POST /venues – Add venue
 
-Slot Management (Admin)
+- GET /venues – List venues
 
-POST /venues/{venueId}/slots – Add slots
+### Slot Management (Admin)
 
-GET /venues/{venueId}/slots – List slots
+- POST /venues/{venueId}/slots – Add slots
 
-Availability
+- GET /venues/{venueId}/slots – List slots
 
-GET /venues/available – Get available venues by sport & time range
+### Availability
 
-Booking
+- GET /venues/available – Get available venues by sport & time range
 
-POST /bookings – Book a slot
+### Booking
 
-PUT /bookings/{id}/cancel – Cancel booking
+- POST /bookings – Book a slot
 
-🐳 Running the Application
+- PUT /bookings/{id}/cancel – Cancel booking
 
-Make sure Docker is running, then:
+---
+
+## 🐳 Running the Application
+
+### Make sure Docker is running, then:
 
 docker-compose up --build
 
+### Services started:
 
-Services started:
+- Spring Boot application
 
-Spring Boot application
+- MySQL database
 
-MySQL database
+- Kafka
 
-🧠 Notes
+---
+
+## 🧠 Notes
 
 Authentication is implemented as a supporting domain
 
@@ -135,6 +142,6 @@ Core focus is on availability, booking, and conflict handling
 
 Designed to reflect real-world backend service patterns
 
-👤 Author
+## 👤 Author
 
-Yatharth Khanna
+### Yatharth Khanna
